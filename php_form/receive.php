@@ -8,7 +8,14 @@ $method = $_SERVER['REQUEST_METHOD'];
 // Hint: use the null coalescing operator ?? to provide an empty-string default.
 $name = '';
 
+if ($method === 'GET') {
+$name = $_GET['displayName'] ?? '';
+} elseif ($method === 'POST') {
+$name = $_POST['displayName'] ?? '';
+}
+
 // TODO 3: Remove spaces at the beginning/end using trim().
+$name = trim($name);
 
 // This prevents the browser from interpreting the submitted value as HTML.
 $safeName = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
